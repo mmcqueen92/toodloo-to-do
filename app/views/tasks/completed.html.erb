@@ -1,9 +1,0 @@
-<%= form_tag(completed_tasks_path, method: :get) do %>
-  <%= label_tag 'Start Date' %>
-  <%= text_field_tag 'start_date', params[:start_date], type: 'date' %>
-
-  <%= label_tag 'End Date' %>
-  <%= text_field_tag 'end_date', params[:end_date], type: 'date' %>
-
-  <%= submit_tag 'Filter' %>
-<% end %>
