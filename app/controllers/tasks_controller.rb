@@ -1,17 +1,13 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  
-  def index
-    @tasks = Task.all
-  end
 
   # gets all of user's tasks
-  def index_for_user
+  def index
     @tasks = current_user.tasks
   end
 
   # show users tasks for the day
-  def today_for_user
+  def today
     @today_tasks = current_user.tasks.where(due_date: Date.today)
   end
 
@@ -30,7 +26,7 @@ class TasksController < ApplicationController
   end
 
   # builds a new task from user input in form
-  def new_for_user
+  def new
     @task = current_user.tasks.build
   end
 
@@ -45,12 +41,12 @@ class TasksController < ApplicationController
   end
 
   # show a specific task
-  def show_for_user
+  def show
     @task = current_user.tasks.find(params[:id])
   end
 
   # populates form with current task info
-  def edit_for_user
+  def edit
     @task = current_user.tasks.find(params[:id])
   end
 
@@ -71,12 +67,11 @@ class TasksController < ApplicationController
     redirect_to tasks_url, notice: 'Task was successfully destroyed.'
   end
 
-  # render form for user
-  def search_user_tasks_form
-  end
+
 
   # gets all of a user's completed tasks within a range of dates
   def search_user_tasks
+  if params[:start_date].present? || params[:end_date].present? || params[:task_status].present?
     start_date = params[:start_date]
     end_date = params[:end_date]
     task_status = params[:task_status]
@@ -94,8 +89,12 @@ class TasksController < ApplicationController
     else
       @filtered_tasks = tasks
     end
-    
+  else
+    # show all tasks by if no params present
+    @filtered_tasks = current_user.tasks
   end
+end
+
 
   
   

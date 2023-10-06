@@ -1,19 +1,19 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :tasks
+  resources :users, only: [:new, :create]
+  resource :session, only: [:new, :create]
+
+
+  root 'static_pages#landing'
   # Defines the root path route ("/")
   # root "articles#index"
-  devise_for :users, controllers: { registrations: 'registrations' }
-  devise_for :users, controllers: { sessions: 'sessions' }
-  devise_for :users, controllers: { sessions: 'sessions' } do
-    delete 'logout', to: 'sessions#destroy', as: :destroy_user_session
-  end
 
   # get all of a user's tasks
-  get '/my_tasks', to: 'tasks#index_for_user', as: 'user_tasks'
+  get '/my_tasks', to: 'tasks#index', as: 'user_tasks'
 
   # get all of a user's tasks due today
-  get '/today_tasks', to: 'tasks#today_for_user', as: 'today_tasks_for_user'
+  get '/today_tasks', to: 'tasks#today', as: 'today_tasks'
 
   # mark a task complete
   patch '/tasks/:id/complete', to: 'tasks#complete', as: 'complete_task'
@@ -22,16 +22,16 @@ Rails.application.routes.draw do
   patch '/tasks/:id/incomplete', to: 'tasks#incomplete', as: 'incomplete_task'
 
   # render a form for a new task belonging to a user
-  get '/tasks/new', to: 'tasks#new_for_user', as: 'new_user_task'
+  get '/tasks/new', to: 'tasks#new', as: 'new_task_form'
   
   # create a new task belonging to a user
   post '/tasks', to: 'tasks#create_for_user', as: 'create_user_task'
   
   # get one of a user's tasks
-  get '/my_tasks/:id', to: 'tasks#show_for_user', as: 'show_user_task'
+  get '/my_tasks/:id', to: 'tasks#show', as: 'show_user_task'
   
   # get one of a user's tasks to edit
-  get '/my_tasks/:id/edit', to: 'tasks#edit_for_user', as: 'edit_user_task'
+  get '/my_tasks/:id/edit', to: 'tasks#edit', as: 'edit_user_task'
   
   # save the edited task
   patch '/my_tasks/:id', to: 'tasks#update_for_user', as: 'update_user_task'
@@ -39,10 +39,16 @@ Rails.application.routes.draw do
   # delete a task
   delete '/my_tasks/:id', to: 'tasks#destroy_for_user', as: 'destroy_user_task'
 
-  # render a search form for the user to filter through their tasks
-  get '/search_user_tasks_form', to: 'tasks#search_user_tasks_form', as: 'search_user_tasks_form'
-
   # display filtered user tasks
-  get 'search_user_tasks', to: 'tasks#search_user_tasks', 'search_user_tasks'
+  get 'search_user_tasks', to: 'tasks#search_user_tasks', as:'search_user_tasks'
+
+  # logout
+  delete '/logout', to: 'sessions#destroy', as: 'logout'
+
+  get '/login', to: 'sessions#new', as: 'new_user_session'
+  post '/login', to: 'sessions#create', as: 'user_session'
+  delete '/logout', to: 'sessions#destroy', as: 'destroy_user_session'
+  get '/register', to: 'registrations#new', as: 'new_user_registration'
+  post '/register', to: 'registrations#create', as: 'user_registration'
 
 end

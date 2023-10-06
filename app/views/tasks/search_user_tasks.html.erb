@@ -1,0 +1,31 @@
+<h1>Search for Tasks</h1>
+
+<%= form_tag(search_user_tasks_path, method: :get) do %>
+  <div class="field">
+    <%= label_tag 'start_date', 'Start Date:' %>
+    <%= text_field_tag 'start_date', params[:start_date], type: 'date' %>
+  </div>
+
+  <div class="field">
+    <%= label_tag 'end_date', 'End Date:' %>
+    <%= text_field_tag 'end_date', params[:end_date], type: 'date' %>
+  </div>
+
+  <div class="field">
+    <%= label_tag 'task_status', 'Task Status:' %>
+    <%= select_tag 'task_status', options_for_select([['Completed', 'completed'], ['Incomplete', 'incomplete']], params[:task_status]) %>
+  </div>
+
+  <%= submit_tag 'Search' %>
+<% end %>
+
+<% if @filtered_tasks.any? %>
+  <h2>Filtered Tasks</h2>
+  <ul>
+    <% @filtered_tasks.each do |task| %>
+      <li><%= task.title %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No tasks match your criteria.</p>
+<% end %>

@@ -1,0 +1,11 @@
+<h1>Today's Tasks</h1>
+
+<% if @today_tasks.any? %>
+    <ul>
+        <% @today_tasks.each do |task| %>
+            <li><%= task.title %></li>
+        <% end %>
+    </ul>
+<% else %>
+    <h3>You don't have any tasks due today</h3>
+<% end %>
