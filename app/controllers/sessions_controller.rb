@@ -6,8 +6,7 @@ class SessionsController < ApplicationController
         user = User.find_by(email: params[:email])
         if user && user.authenticate(params[:password])
             session[:user_id] = user.id
-            redirect_to '/my_tasks'
-      # Handle successful login (e.g., redirect to user dashboard)
+            redirect_to '/my_tasks', notice: 'Login Successful'
         else
             flash.now[:alert] = 'Invalid email or password'
             

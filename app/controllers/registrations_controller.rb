@@ -4,15 +4,16 @@ class RegistrationsController < ApplicationController
   end
 
   def create
+    puts "REGISTRATIONS CONTROLLER CREATE"
     @user = User.new(user_params)
     if @user.save
     # Automatically sign in the user after successful registration
         sign_in(@user)
-        redirect_to root_path, notice: 'Registration successful. You are now logged in.'
+        redirect_to "/my_tasks", notice: 'Registration successful. You are now logged in.'
     else
         render :new
     end
-end
+  end
 
   private
 

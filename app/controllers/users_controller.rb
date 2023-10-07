@@ -7,9 +7,9 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             session[:user_id] = @user.id
-            redirect_to '/'
+            redirect_to '/my_tasks'
         else
-            redirect_to 'register'
+            redirect_to '/register'
         end
     end
 

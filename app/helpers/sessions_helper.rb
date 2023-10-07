@@ -1,7 +1,8 @@
 module SessionsHelper
     def sign_in(user)
-        session[:user_id] = user.id
-        @current_user = user
+      session[:user_id] = user.id
+      @current_user = user
+      redirect_to '/my_tasks'
     end
 
   # Returns the current signed-in user (if any).
