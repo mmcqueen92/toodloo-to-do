@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   # gets all of user's tasks
   def index
-    @tasks = current_user.tasks
+    @tasks = current_user.tasks.all
   end
 
   # show users tasks for the day
@@ -31,7 +31,7 @@ class TasksController < ApplicationController
   end
 
   # creates a new task for user
-  def create_for_user
+  def create
     @task = current_user.tasks.build(task_params)
     if @task.save
       redirect_to @task, notice: 'Task was successfully created.'

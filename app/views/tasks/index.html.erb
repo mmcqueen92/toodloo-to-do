@@ -24,6 +24,13 @@
         </td>
       </tr>
     <% end %>
+
+    <ul>
+      <% current_user.tasks.each do |task| %>
+        <li><%= task.title %></li>
+      <% end %>
+    </ul>
+
   </tbody>
 </table>
 

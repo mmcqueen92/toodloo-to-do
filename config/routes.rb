@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   get '/tasks/new', to: 'tasks#new', as: 'new_task_form'
   
   # create a new task belonging to a user
-  post '/tasks', to: 'tasks#create_for_user', as: 'create_user_task'
+  post '/tasks', to: 'tasks#create', as: 'create_user_task'
   
   # get one of a user's tasks
   get '/my_tasks/:id', to: 'tasks#show', as: 'show_user_task'
