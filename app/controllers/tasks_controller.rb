@@ -25,6 +25,12 @@ class TasksController < ApplicationController
     redirect_to tasks_url, notice: 'Task marked as incomplete.'
   end
 
+  def toggle_status
+    @task = Task.find(params[:id])
+    @task.update(completed: !@task.completed)
+    redirect_to tasks_path, notice: 'Task status updated successfully.'
+  end
+
   # builds a new task from user input in form
   def new
     @task = current_user.tasks.build
@@ -52,7 +58,7 @@ class TasksController < ApplicationController
 
   # updates a task
   def update_for_user
-    @task = current_user.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
     if @task.update(task_params)
       redirect_to @task, notice: 'Task was successfully updated.'
     else

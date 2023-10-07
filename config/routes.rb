@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  resources :tasks
+  resources :tasks do
+    member do
+      patch 'toggle_status'
+    end
+  end
   resources :users, only: [:new, :create]
   resource :session, only: [:new, :create]
 

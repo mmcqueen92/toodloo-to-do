@@ -19,8 +19,9 @@
         <td><%= task.completed ? 'Yes' : 'No' %></td>
         <td>
           <%= link_to 'Show', task %>
+          <%= button_to 'Toggle Status', toggle_status_task_path(task), method: :patch, remote: true %>
           <%= link_to 'Edit', edit_task_path(task) %>
-          <%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= button_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
       </tr>
     <% end %>
