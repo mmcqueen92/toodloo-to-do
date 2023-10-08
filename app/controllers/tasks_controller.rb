@@ -11,16 +11,11 @@ class TasksController < ApplicationController
     @today_tasks = current_user.tasks.where(due_date: Date.today)
   end
 
-  def dashboard
-  
-  end
-
+  #show users tasks for a given day
   def tasks_for_day
-    @selected_date = Date.parse(params[:date]) 
-    @tasks = current_user.tasks.where(due_date: @selected_date) 
-
-    respond_to do |format|
-      format.js # Assuming you want to respond with JavaScript
+    if params[:date].present?
+      @date = Date.parse(params[:date])
+      @tasks_for_day = current_user.tasks.where(due_date: @date)
     end
   end
 
@@ -55,7 +50,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to @task, notice: 'Task was successfully created.'
     else
-      render :new_for_user
+      render :new
     end
   end
 
@@ -127,6 +122,10 @@ end
     params.require(:task).permit(:title, :description, :due_date, :completed)
   end
 
-
+  def date_param
+    params.require(:date).permit(:date)
   end
+
+
+end
   

@@ -43,6 +43,11 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 gem 'bcrypt', '~> 3.1.7' # You can specify the version you want
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'bootstrap'
+
+
 
 
 # Use Sass to process CSS

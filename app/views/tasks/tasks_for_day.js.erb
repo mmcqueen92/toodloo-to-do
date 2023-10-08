@@ -1,9 +1,0 @@
-var tasksList = document.getElementById('tasks-list');
-
-tasksList.innerHTML = '';
-
-<% @tasks.each do |task| %>
-  var taskItem = document.createElement('li');
-  taskItem.textContent = '<%= task.name %>';
-  tasksList.appendChild(taskItem);
-<% end %>

@@ -8,22 +8,14 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
   resource :session, only: [:new, :create]
 
-
-  root 'static_pages#landing'
   # Defines the root path route ("/")
-  # root "articles#index"
+  root 'static_pages#landing'
 
   # get all of a user's tasks
   get '/my_tasks', to: 'tasks#index', as: 'user_tasks'
 
   # get all of a user's tasks due today
   get '/today_tasks', to: 'tasks#today', as: 'today_tasks'
-
-  # get user dashboard
-  get '/dashboard', to: 'tasks#dashboard', as: 'user_dashboard'
-
-  # get tasks for a given day
-  get '/tasks_for_day/:date', to: 'tasks#tasks_for_day', as: 'tasks_for_day'
 
   # mark a task complete
   patch '/tasks/:id/complete', to: 'tasks#complete', as: 'complete_task'
@@ -50,7 +42,10 @@ Rails.application.routes.draw do
   delete '/my_tasks/:id', to: 'tasks#destroy_for_user', as: 'destroy_user_task'
 
   # display filtered user tasks
-  get 'search_user_tasks', to: 'tasks#search_user_tasks', as:'search_user_tasks'
+  get '/search_user_tasks', to: 'tasks#search_user_tasks', as:'search_user_tasks'
+
+  # get tasks for a given day
+  get '/tasks_for_day', to: 'tasks#tasks_for_day', as: 'tasks_for_day'
 
   # login/logout/register routes
   delete '/logout', to: 'sessions#destroy', as: 'logout'

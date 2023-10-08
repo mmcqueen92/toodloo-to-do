@@ -1,5 +1,5 @@
 import { Application } from "@hotwired/stimulus"
-import { dashboard } from "./dashboard";
+import { dashboard } from "../dashboard";
 
 const application = Application.start()
 

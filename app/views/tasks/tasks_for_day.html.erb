@@ -1,8 +1,8 @@
-<h1>Today's Tasks</h1>
+<h1>Tasks for <%= @date %></h1>
 
-<% if @today_tasks.any? %>
+<% if @tasks_for_day.any? %>
     <ul>
-        <% @today_tasks.each do |task| %>
+        <% @tasks_for_day.each do |task| %>
             <tr>
                 <td><%= task.title %></td>
                 <td><%= task.description %></td>
@@ -26,11 +26,3 @@
   <%= date_field_tag 'date' %>
   <%= submit_tag 'View Tasks' %>
 <% end %>
-
-
-
-
-
-
-
-
