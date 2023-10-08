@@ -45,7 +45,6 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy', as: 'logout'
   get '/login', to: 'sessions#new', as: 'new_user_session'
   post '/login', to: 'sessions#create', as: 'user_session'
-  delete '/logout', to: 'sessions#destroy', as: 'destroy_user_session'
   get '/register', to: 'registrations#new', as: 'new_user_registration'
   post '/register', to: 'registrations#create', as: 'user_registration'
 

@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
             redirect_to '/my_tasks', notice: 'Login Successful'
         else
             flash.now[:alert] = 'Invalid email or password'
-            
+            redirect_to request.referer, notice: 'Invalid email or password'
         end
     end
 
