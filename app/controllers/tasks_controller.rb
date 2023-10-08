@@ -11,6 +11,19 @@ class TasksController < ApplicationController
     @today_tasks = current_user.tasks.where(due_date: Date.today)
   end
 
+  def dashboard
+  
+  end
+
+  def tasks_for_day
+    @selected_date = Date.parse(params[:date]) 
+    @tasks = current_user.tasks.where(due_date: @selected_date) 
+
+    respond_to do |format|
+      format.js # Assuming you want to respond with JavaScript
+    end
+  end
+
   # mark a task complete
   def complete
     @task = current_user.tasks.find(params[:id])

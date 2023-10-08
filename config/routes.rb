@@ -19,6 +19,12 @@ Rails.application.routes.draw do
   # get all of a user's tasks due today
   get '/today_tasks', to: 'tasks#today', as: 'today_tasks'
 
+  # get user dashboard
+  get '/dashboard', to: 'tasks#dashboard', as: 'user_dashboard'
+
+  # get tasks for a given day
+  get '/tasks_for_day/:date', to: 'tasks#tasks_for_day', as: 'tasks_for_day'
+
   # mark a task complete
   patch '/tasks/:id/complete', to: 'tasks#complete', as: 'complete_task'
 
@@ -46,9 +52,8 @@ Rails.application.routes.draw do
   # display filtered user tasks
   get 'search_user_tasks', to: 'tasks#search_user_tasks', as:'search_user_tasks'
 
-  # logout
+  # login/logout/register routes
   delete '/logout', to: 'sessions#destroy', as: 'logout'
-
   get '/login', to: 'sessions#new', as: 'new_user_session'
   post '/login', to: 'sessions#create', as: 'user_session'
   delete '/logout', to: 'sessions#destroy', as: 'destroy_user_session'
