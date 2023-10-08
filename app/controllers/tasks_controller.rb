@@ -23,7 +23,8 @@ class TasksController < ApplicationController
   def toggle_status
     @task = Task.find(params[:id])
     @task.update(completed: !@task.completed)
-    redirect_to tasks_path, notice: 'Task status updated successfully.'
+    redirect_to request.referer, notice: 'Task status updated successfully.'
+
   end
 
   # new task form
@@ -68,7 +69,7 @@ class TasksController < ApplicationController
     redirect_to tasks_url, notice: 'Task was successfully destroyed.'
   end
 
-  # gets all of a user's completed tasks within a range of dates
+  # gets all of a user's tasks that fit the search params (start date, end date, status)
   def search_user_tasks
     if params[:start_date].present? || params[:end_date].present? || params[:task_status].present?
       start_date = params[:start_date]

@@ -34,6 +34,9 @@
           <li class="nav-item <%= 'active' if current_page?(new_task_form_path) %>">
             <%= link_to 'New Task', new_task_form_path, class: 'nav-link' %>
           </li>
+          <li class="nav-item <%= 'active' if current_page?(search_user_tasks_path) %>">
+            <%= link_to 'Search', search_user_tasks_path, class: 'nav-link' %>
+          </li>
         </ul>
       </div>
     </nav>
