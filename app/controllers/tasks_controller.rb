@@ -19,27 +19,14 @@ class TasksController < ApplicationController
     end
   end
 
-  # mark a task complete
-  def complete
-    @task = current_user.tasks.find(params[:id])
-    @task.update(completed: true)
-    redirect_to tasks_url, notice: 'Task marked as complete.'
-  end
-
-  # mark a task incomplete
-  def incomplete
-    @task = current_user.tasks.find(params[:id])
-    @task.update(completed: false)
-    redirect_to tasks_url, notice: 'Task marked as incomplete.'
-  end
-
+  # toggle a tasks status
   def toggle_status
     @task = Task.find(params[:id])
     @task.update(completed: !@task.completed)
     redirect_to tasks_path, notice: 'Task status updated successfully.'
   end
 
-  # builds a new task from user input in form
+  # new task form
   def new
     @task = current_user.tasks.build
   end
@@ -81,33 +68,39 @@ class TasksController < ApplicationController
     redirect_to tasks_url, notice: 'Task was successfully destroyed.'
   end
 
-
-
   # gets all of a user's completed tasks within a range of dates
   def search_user_tasks
-  if params[:start_date].present? || params[:end_date].present? || params[:task_status].present?
-    start_date = params[:start_date]
-    end_date = params[:end_date]
-    task_status = params[:task_status]
+    if params[:start_date].present? || params[:end_date].present? || params[:task_status].present?
+      start_date = params[:start_date]
+      end_date = params[:end_date]
+      task_status = params[:task_status]
 
-    tasks = current_user.tasks
+      tasks = current_user.tasks
 
-    if start_date.present? && end_date.present?
-      tasks = tasks.where(due_date: start_date..end_date)
-    end
+      if start_date.present? && end_date.present?
+        tasks = tasks.where(due_date: start_date..end_date)
+      end
 
-    if task_status.present? && task_status == 'completed'
-      @filtered_tasks = tasks.where(completed: true)
-    elsif task_status.present? && task_status == 'incomplete'
-      @filtered_tasks = tasks.where(completed: false)
+      if start_date.present? && !end_date.present?
+        tasks = tasks.where("due_date >= ?", start_date)
+      end
+
+      if end_date.present? && !start_date.present?
+        tasks = tasks.where("due_date <= ?", end_date)
+      end
+
+      if task_status.present? && task_status == 'completed'
+        @filtered_tasks = tasks.where(completed: true)
+      elsif task_status.present? && task_status == 'incomplete'
+        @filtered_tasks = tasks.where(completed: false)
+      else
+        @filtered_tasks = tasks
+      end
     else
-      @filtered_tasks = tasks
+      # show all tasks by if no params present
+      @filtered_tasks = current_user.tasks
     end
-  else
-    # show all tasks by if no params present
-    @filtered_tasks = current_user.tasks
   end
-end
 
 
   

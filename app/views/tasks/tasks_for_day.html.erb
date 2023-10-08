@@ -1,26 +1,29 @@
-<h1>Tasks for <%= @date %></h1>
+<% if @date.present? %>
+    <h1>Tasks for <%= @date %></h1>
 
-<% if @tasks_for_day.any? %>
-    <ul>
-        <% @tasks_for_day.each do |task| %>
-            <tr>
-                <td><%= task.title %></td>
-                <td><%= task.description %></td>
-                <td><%= task.due_date %></td>
-                <td><%= task.completed ? 'Yes' : 'No' %></td>
-                <td>
-                    <%= button_to 'Show', task, method: :get %>
-                    <%= button_to 'Toggle Status', toggle_status_task_path(task), method: :patch, remote: true %>
-                    <%= button_to 'Edit', edit_task_path(task), method: :get %>
-                    <%= button_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %>
-                </td>
-            </tr>
-        <% end %>
-    </ul>
+    <% if @tasks_for_day.any? %>
+        <ul>
+            <% @tasks_for_day.each do |task| %>
+                <tr>
+                    <td><%= task.title %></td>
+                    <td><%= task.description %></td>
+                    <td><%= task.due_date %></td>
+                    <td><%= task.completed ? 'Yes' : 'No' %></td>
+                    <td>
+                        <%= button_to 'Show', task, method: :get %>
+                        <%= button_to 'Toggle Status', toggle_status_task_path(task), method: :patch, remote: true %>
+                        <%= button_to 'Edit', edit_task_path(task), method: :get %>
+                        <%= button_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    </td>
+                </tr>
+            <% end %>
+        </ul>
+    <% else %>
+        <h3>You don't have any tasks due today</h3>
+    <% end %>
 <% else %>
-    <h3>You don't have any tasks due today</h3>
+  <h3>Please select a date</h3>
 <% end %>
-
 <%= form_tag(tasks_for_day_path, method: :get) do %>
   <label for="date">Select a Date:</label>
   <%= date_field_tag 'date' %>

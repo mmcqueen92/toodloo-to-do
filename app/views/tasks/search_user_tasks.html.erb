@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= label_tag 'task_status', 'Task Status:' %>
-    <%= select_tag 'task_status', options_for_select([['Completed', 'completed'], ['Incomplete', 'incomplete']], params[:task_status]) %>
+    <%= select_tag 'task_status', options_for_select([['All', 'all'], ['Completed', 'completed'], ['Incomplete', 'incomplete']], params[:task_status]) %>
   </div>
 
   <%= submit_tag 'Search' %>

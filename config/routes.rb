@@ -17,12 +17,6 @@ Rails.application.routes.draw do
   # get all of a user's tasks due today
   get '/today_tasks', to: 'tasks#today', as: 'today_tasks'
 
-  # mark a task complete
-  patch '/tasks/:id/complete', to: 'tasks#complete', as: 'complete_task'
-
-  # mark a task incomplete
-  patch '/tasks/:id/incomplete', to: 'tasks#incomplete', as: 'incomplete_task'
-
   # render a form for a new task belonging to a user
   get '/tasks/new', to: 'tasks#new', as: 'new_task_form'
   
