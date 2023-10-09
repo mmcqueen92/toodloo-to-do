@@ -6,14 +6,16 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "_navbar", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "_tasklist", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <!-- Bootstrap CSS and JavaScript -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <%# <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> %>
+    <%# <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> %>
+
   </head>
 
   <body>
@@ -25,18 +27,18 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
+          <ul class="navbar-nav ml-auto"> <!-- Align items to the right -->
             <li class="nav-item <%= 'active' if current_page?(user_tasks_path) %>">
-              <%= link_to 'My Tasks', user_tasks_path, class: 'nav-link' %>
+              <%= button_to 'My Tasks', user_tasks_path, method: :get, class: 'nav-link' %>
             </li>
             <li class="nav-item <%= 'active' if current_page?(today_tasks_path) %>">
-              <%= link_to "Today's Tasks", today_tasks_path, class: 'nav-link' %>
+              <%= button_to "Today's Tasks", today_tasks_path, method: :get, class: 'nav-link' %>
             </li>
             <li class="nav-item <%= 'active' if current_page?(new_task_form_path) %>">
-              <%= link_to 'New Task', new_task_form_path, class: 'nav-link' %>
+              <%= button_to 'New Task', new_task_form_path, method: :get, class: 'nav-link' %>
             </li>
             <li class="nav-item <%= 'active' if current_page?(search_user_tasks_path) %>">
-              <%= link_to 'Search', search_user_tasks_path, class: 'nav-link' %>
+              <%= button_to 'Search', search_user_tasks_path, method: :get, class: 'nav-link' %>
             </li>
             <li class="nav-item">
               <%= button_to 'Log Out', logout_path, method: :delete, class: 'nav-link' %>

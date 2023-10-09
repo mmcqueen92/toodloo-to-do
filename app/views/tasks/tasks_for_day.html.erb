@@ -10,7 +10,7 @@
                     <td><%= task.due_date %></td>
                     <td><%= task.completed ? 'Yes' : 'No' %></td>
                     <td>
-                        <%= button_to 'Show', task, method: :get %>
+                        <%= button_to 'Details', task, method: :get %>
                         <%= button_to 'Toggle Status', toggle_status_task_path(task), method: :patch, remote: true %>
                         <%= button_to 'Edit', edit_task_path(task), method: :get %>
                         <%= button_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %>
