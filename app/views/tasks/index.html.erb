@@ -1,4 +1,4 @@
-<h1 class="page-title">Task List</h1>
+<h1 class="page-title">All Tasks</h1>
 <%= button_to 'New Task', new_task_path, method: :get, class: 'btn btn-primary new-task-button', form: {class: 'new-task-button mb-xl'} %>
 
 <div class="table-container">
@@ -14,14 +14,14 @@
     </thead>
     <tbody>
       <% @tasks.each do |task| %>
-        <tr>
+        <tr class="task-row <%= task.completed ? 'complete' : 'incomplete' %>" >
           <td><%= task.title %></td>
           <td><%= task.description %></td>
           <td><%= task.due_date %></td>
           <td><%= task.completed ? 'Yes' : 'No' %></td>
           <td>
-            <%= button_to 'Details', task, method: :get, class: 'btn btn-info btn-sm', form: { class: 'btn'} %>
             <%= button_to task.completed ? 'Mark Incomplete' : 'Mark Complete', toggle_status_task_path(task), method: :patch, remote: true, class: 'btn btn-success btn-sm', form: { class: 'btn'} %>
+            <%= button_to 'Details', task, method: :get, class: 'btn btn-info btn-sm', form: { class: 'btn'} %>
             <%= button_to 'Edit', edit_task_path(task), method: :get, class: 'btn btn-warning btn-sm', form: { class: 'btn'} %>
             <%= button_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm', form: { class: 'btn'} %>
           </td>

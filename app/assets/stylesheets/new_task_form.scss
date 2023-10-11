@@ -1,0 +1,30 @@
+/* Add custom styling for the New Task form */
+.task-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.task-form .form-group {
+  margin-bottom: 20px;
+}
+
+.task-form .form-control {
+  font-size: 16px;
+}
+
+.task-form h1 {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.task-form .btn-secondary {
+  margin-top: 10px;
+}
+
+.task-form .btn-primary {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+}
+
+/* Optional: Add more custom styling as needed */

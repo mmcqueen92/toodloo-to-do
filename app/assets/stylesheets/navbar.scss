@@ -1,0 +1,52 @@
+/* Navbar */
+.navbar {
+    background-color: #333;
+    /* Background color */
+    color: #fff;
+    /* Text color */
+    padding: 10px 0;
+    /* Add padding to the top and bottom */
+}
+
+.navbar a {
+    color: #fff;
+    /* Text color for links */
+}
+
+.navbar-toggler-icon {
+    color: #fff;
+    /* Color of the hamburger icon */
+}
+
+/* Nav items */
+.navbar-nav .nav-item {
+    margin-right: 10px;
+    /* Add spacing between items */
+}
+
+/* Active item */
+.navbar-nav .nav-item.active {
+    border-bottom: 2px solid #fff;
+    /* Highlight active item with a bottom border */
+}
+
+/* Buttons */
+.nav-link {
+    background-color: transparent;
+    /* Remove background color */
+    border: none;
+    /* Remove borders */
+    color: #fff;
+    /* Text color for buttons */
+}
+
+.nav-link:hover {
+    color: #ccc;
+    /* Text color when hovering over buttons */
+}
+
+/* Log Out button */
+.nav-link:last-child {
+    color: #f00;
+    /* Text color for Log Out button */
+}

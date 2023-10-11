@@ -1,31 +1,58 @@
-<h1>Search for Tasks</h1>
+<%= link_to 'Back', user_tasks_path(current_user), class: 'btn btn-secondary btn-back mb-3' %>
 
-<%= form_tag(search_user_tasks_path, method: :get) do %>
-  <div class="field">
-    <%= label_tag 'start_date', 'Start Date:' %>
-    <%= text_field_tag 'start_date', params[:start_date], type: 'date' %>
-  </div>
+<div class="search-tasks">
+  <h1>Search for Tasks</h1>
 
-  <div class="field">
-    <%= label_tag 'end_date', 'End Date:' %>
-    <%= text_field_tag 'end_date', params[:end_date], type: 'date' %>
-  </div>
+  <%= form_tag(search_user_tasks_path, method: :get, class: 'search-form') do %>
+    <div class="form-group">
+      <%= label_tag 'start_date', 'Start Date:' %>
+      <%= text_field_tag 'start_date', params[:start_date], type: 'date', class: 'form-control' %>
+    </div>
 
-  <div class="field">
-    <%= label_tag 'task_status', 'Task Status:' %>
-    <%= select_tag 'task_status', options_for_select([['All', 'all'], ['Completed', 'completed'], ['Incomplete', 'incomplete']], params[:task_status]) %>
-  </div>
+    <div class="form-group">
+      <%= label_tag 'end_date', 'End Date:' %>
+      <%= text_field_tag 'end_date', params[:end_date], type: 'date', class: 'form-control' %>
+    </div>
 
-  <%= submit_tag 'Search' %>
-<% end %>
+    <div class="form-group">
+      <%= label_tag 'task_status', 'Task Status:' %>
+      <%= select_tag 'task_status', options_for_select([['All', 'all'], ['Completed', 'completed'], ['Incomplete', 'incomplete']], params[:task_status]), class: 'form-control' %>
+    </div>
 
+    <%= submit_tag 'Search', class: 'btn btn-primary' %>
+  <% end %>
+</div>
 <% if @filtered_tasks.any? %>
-  <h2>Filtered Tasks</h2>
-  <ul>
-    <% @filtered_tasks.each do |task| %>
-      <li><%= task.title %></li>
-    <% end %>
-  </ul>
+  <div class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Due Date</th>
+          <th>Completed</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @filtered_tasks.each do |task| %>
+          <tr>
+            <td><%= task.title %></td>
+            <td><%= task.description %></td>
+            <td><%= task.due_date %></td>
+            <td><%= task.completed ? 'Yes' : 'No' %></td>
+            <td>
+              <%= button_to task.completed ? 'Mark Incomplete' : 'Mark Complete', toggle_status_task_path(task), method: :patch, remote: true, class: 'btn btn-success btn-sm', form: { class: 'btn'} %>
+              <%= button_to 'Details', task, method: :get, class: 'btn btn-info btn-sm', form: { class: 'btn'} %>
+              <%= button_to 'Edit', edit_task_path(task), method: :get, class: 'btn btn-warning btn-sm', form: { class: 'btn'} %>
+              <%= button_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm', form: { class: 'btn'} %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 <% else %>
-  <p>No tasks match your criteria.</p>
+  <p class="no-tasks">No tasks match your criteria.</p>
 <% end %>
+
