@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   patch '/my_tasks/:id', to: 'tasks#update_for_user', as: 'update_user_task'
   
   # delete a task
-  delete '/my_tasks/:id', to: 'tasks#destroy_for_user', as: 'destroy_user_task'
+  delete '/tasks/:id', to: 'tasks#destroy', as: 'destroy_user_task'
 
   # display filtered user tasks
   get '/search_user_tasks', to: 'tasks#search_user_tasks', as:'search_user_tasks'

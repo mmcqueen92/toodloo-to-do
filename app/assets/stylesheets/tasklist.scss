@@ -1,5 +1,11 @@
+.new-task-button-form {
+  display: flex;
+  justify-content: center;
+}
+
 .new-task-button {
-  margin-bottom: 5px !important;
+  margin:auto;
+  display: flex;
 }
 
 .complete {
@@ -8,4 +14,59 @@
 
 .incomplete {
   background-color: #FFC0CB;
+}
+
+/* tables containing lists of tasks */
+.table-container {
+  max-height: 600px;
+  /* Limit the table height */
+  overflow-y: auto;
+  /* Enable vertical scroll for large lists */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.table {
+  width: 80%;
+
+  tbody {
+      tr {
+        max-height: 40px;
+      }
+    }
+
+  tbody {
+    tr {
+      td {
+        /* Your custom styles for td elements */
+        text-align: center;
+      }
+    }
+  }
+}
+
+.task-row {
+  max-height: 40px;
+}
+
+.task-description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 500px;
+  max-height: 40px;
+}
+
+.table-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.date-form-container {
+  display: flex;
+  justify-content: center;
 }

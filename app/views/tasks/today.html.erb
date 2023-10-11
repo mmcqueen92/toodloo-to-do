@@ -1,4 +1,5 @@
-<h1>Today's Tasks</h1>
+<h1 class="page-title">Today's Tasks</h1>
+<%= button_to 'New Task', new_task_path, method: :get, class: 'btn btn-primary new-task-button', form: {class: 'new-task-button-form mb-xl'} %>
 
 <% if @today_tasks.any? %>
   <div class="table-container">
@@ -19,25 +20,27 @@
             <td><%= task.description %></td>
             <td><%= task.due_date %></td>
             <td><%= task.completed ? 'Yes' : 'No' %></td>
-            <td>
-              <%= button_to task.completed ? 'Mark Incomplete' : 'Mark Complete', toggle_status_task_path(task), method: :patch, remote: true, class: 'btn btn-success btn-sm', form: { class: 'btn'} %>
-              <%= button_to 'Details', task, method: :get, class: 'btn btn-info btn-sm', form: { class: 'btn'} %>
-              <%= button_to 'Edit', edit_task_path(task), method: :get, class: 'btn btn-warning btn-sm', form: { class: 'btn'} %>
-              <%= button_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm', form: { class: 'btn'} %>
+            <td class="table-actions">
+                <%= button_to task.completed ? 'Incomplete' : 'Complete', toggle_status_task_path(task), method: :patch, remote: true, class: task.completed ? "btn btn-warning" : "btn btn-success", form: { class: 'btn'} %>
+                <%= button_to 'Details', task, method: :get, class: 'btn btn-info btn-sm', form: { class: 'btn'} %>
+                <%= button_to 'Edit', edit_task_path(task), method: :get, class: 'btn btn-warning btn-sm', form: { class: 'btn'} %>
+                <%= button_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm', form: { class: 'btn'} %>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
 <% else %>
-    <h3>You don't have any tasks due today</h3>
+    <h3 class="no-tasks">You don't have any tasks due today</h3>
 <% end %>
 
-<%= form_tag(tasks_for_day_path, method: :get) do %>
-  <label for="date">Select a Date:</label>
-  <%= date_field_tag 'date' %>
-  <%= submit_tag 'View Tasks' %>
-<% end %>
+<div class="date-form-container">
+  <%= form_tag(tasks_for_day_path, method: :get) do %>
+    <label for="date">Select a Date:</label>
+    <%= date_field_tag 'date' %>
+    <%= submit_tag 'View Tasks' %>
+  <% end %>
+</div>
 
 
 

@@ -1,4 +1,3 @@
-@import 'custom';
 @import 'navbar';
 @import 'new_task_form';
 @import 'search_user_tasks_form';
@@ -14,19 +13,12 @@
     margin: 20px;
 }
 
-/* tables containing lists of tasks */
-.table-container {
-    max-height: 500px;
-    /* Limit the table height */
-    overflow-y: auto;
-    /* Enable vertical scroll for large lists */
-}
-
 /* Style buttons */
 .btn {
     padding: 5px 10px;
     font-size: 14px;
     margin-right: 5px;
+    width: 100px;
 
     &.btn-info {
         background-color: #007bff;
@@ -49,3 +41,6 @@
     }
 }
 
+.no-tasks {
+    text-align: center;
+}

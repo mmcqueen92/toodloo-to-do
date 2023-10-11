@@ -1,7 +1,7 @@
 <%= link_to 'Back', user_tasks_path(current_user), class: 'btn btn-secondary btn-back mb-3' %>
+<h1 class="page-title">Search for Tasks</h1>
 
 <div class="search-tasks">
-  <h1>Search for Tasks</h1>
 
   <%= form_tag(search_user_tasks_path, method: :get, class: 'search-form') do %>
     <div class="form-group">
@@ -36,13 +36,13 @@
       </thead>
       <tbody>
         <% @filtered_tasks.each do |task| %>
-          <tr>
+          <tr class="task-row <%= task.completed ? 'complete' : 'incomplete' %>">
             <td><%= task.title %></td>
-            <td><%= task.description %></td>
+            <td><div class="task-description"><%= task.description %></div></td>
             <td><%= task.due_date %></td>
             <td><%= task.completed ? 'Yes' : 'No' %></td>
-            <td>
-              <%= button_to task.completed ? 'Mark Incomplete' : 'Mark Complete', toggle_status_task_path(task), method: :patch, remote: true, class: 'btn btn-success btn-sm', form: { class: 'btn'} %>
+            <td class="table-actions">
+              <%= button_to task.completed ? 'Incomplete' : 'Complete', toggle_status_task_path(task), method: :patch, remote: true, class: task.completed ? "btn btn-warning" : "btn btn-success", form: { class: 'btn'} %>
               <%= button_to 'Details', task, method: :get, class: 'btn btn-info btn-sm', form: { class: 'btn'} %>
               <%= button_to 'Edit', edit_task_path(task), method: :get, class: 'btn btn-warning btn-sm', form: { class: 'btn'} %>
               <%= button_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm', form: { class: 'btn'} %>
