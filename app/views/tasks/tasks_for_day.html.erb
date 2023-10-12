@@ -1,4 +1,4 @@
-<%= button_to 'New Task', new_task_path, method: :get, class: 'btn btn-primary new-task-button', form: {class: 'new-task-button-form mb-xl'} %>
+<%= button_to 'Back', user_tasks_path(current_user), class: 'btn btn-back', method: :get %>
 
 <% if @date.present? %>
     <h1 class="page-title">Tasks for <%= @date %></h1>
@@ -19,7 +19,7 @@
                 <% @tasks_for_day.each do |task| %>
                     <tr class="task-row <%= task.completed ? 'complete' : 'incomplete' %>">
                     <td><%= task.title %></td>
-                    <td><%= task.description %></td>
+                     <td class="task-description"><%= task.description %></td>
                     <td><%= task.due_date %></td>
                     <td><%= task.completed ? 'Yes' : 'No' %></td>
                     <td class="table-actions">

@@ -1,15 +1,25 @@
-<%= form_for @user, url: users_path do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+<h1 class="page-title">Sign Up</h1>
 
-  <%= f.label :email %>
-  <%= f.email_field :email %>
+<%= form_for @user, url: users_path, html: { class: 'login-form' } do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control', placeholder: 'Your Name', required: true %>
+  </div>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.email_field :email, class: 'form-control', placeholder: 'Your Email', required: true %>
+  </div>
 
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
+  <div class="form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control', placeholder: 'Choose a Password', required: true %>
+  </div>
 
-  <%= f.submit 'Sign Up' %>
+  <div class="form-group">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Confirm Password', required: true %>
+  </div>
+
+  <%= f.submit 'Sign Up', class: 'btn btn-primary' %>
 <% end %>

@@ -35,6 +35,7 @@
   tbody {
       tr {
         max-height: 40px;
+        min-height: 40px;
       }
     }
 
@@ -43,6 +44,7 @@
       td {
         /* Your custom styles for td elements */
         text-align: center;
+        max-height: 40px;
       }
     }
   }

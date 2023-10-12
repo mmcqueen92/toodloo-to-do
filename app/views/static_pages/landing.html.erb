@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Welcome to Toodloo-To-Do</title>
-</head>
-<body>
-  <h1>Welcome to Toodloo-To-Do</h1>
-  <p>Get started by signing in or creating an account.</p>
-  
-  <!-- Link to the Login Page -->
-  <a href="<%= new_user_session_path %>" class="btn btn-primary">Log In</a>
-  
-  <!-- Link to the Registration Page -->
-  <a href="<%= new_user_registration_path %>" class="btn btn-secondary">Sign Up</a>
-</body>
+
+  <head>
+    <title>Welcome to Toodloo-To-Do</title>
+    <%= stylesheet_link_tag "landing", "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+    <div class="landing">
+      <h1 class="landing-title">Welcome to Toodloo-To-Do</h1>
+      <p class="landing-text">Get started by signing in or creating an account.</p>
+
+      <!-- Links to the Login and Registration Pages -->
+      <a href="<%= new_user_session_path %>" class="btn btn-primary">Log In</a>
+      <a href="<%= new_user_registration_path %>" class="btn btn-secondary">Sign Up</a>
+    </div>
+  </body>
+
 </html>

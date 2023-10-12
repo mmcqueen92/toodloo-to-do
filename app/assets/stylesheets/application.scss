@@ -2,6 +2,13 @@
 @import 'new_task_form';
 @import 'search_user_tasks_form';
 @import 'tasklist';
+@import 'login';
+@import 'landing';
+
+.body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 
 .page-title {
     font-size: 24px;
@@ -17,27 +24,66 @@
 .btn {
     padding: 5px 10px;
     font-size: 14px;
-    margin-right: 5px;
+    text-align: center;
     width: 100px;
 
     &.btn-info {
         background-color: #007bff;
         color: #fff;
+        transition: background-color 0.3s;
+    }
+
+    &.btn-info:hover {
+        background-color: #0056b3;
     }
 
     &.btn-success {
         background-color: #28a745;
         color: #fff;
+        transition: background-color 0.3s;
+    }
+
+    &.btn-success:hover {
+        background-color: #1f813a;
     }
 
     &.btn-warning {
         background-color: #ffc107;
         color: #212529;
+        transition: background-color 0.3s;
+    }
+
+    &.btn-warning:hover {
+        background-color: #e0a000;
     }
 
     &.btn-danger {
         background-color: #dc3545;
         color: #fff;
+        transition: background-color 0.3s;
+    }
+
+    &.btn-danger:hover {
+        background-color: #b02a38;
+    }
+
+    &.btn-back {
+        background-color: #007bff;
+        margin: 10px;
+    }
+
+    &.btn-back:hover {
+        background-color: #0056b3;
+    }
+
+    &.btn-submit {
+        background-color: #007bff;
+        color: #fff;
+        transition: background-color 0.3s;
+    }
+    
+    &.btn-submit:hover {
+        background-color: #0056b3;
     }
 }
 

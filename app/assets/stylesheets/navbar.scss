@@ -13,15 +13,19 @@
     /* Text color for links */
 }
 
-.navbar-toggler-icon {
-    color: #fff;
-    /* Color of the hamburger icon */
+/* Nav items */
+.nav-item {
+    margin-right: 10px;
+    background-color: #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    /* Add spacing between items */
 }
 
-/* Nav items */
-.navbar-nav .nav-item {
-    margin-right: 10px;
-    /* Add spacing between items */
+.nav-item:hover {
+    background-color: #999;
+    color: #ccc;
+    /* Text color when hovering over buttons */
 }
 
 /* Active item */
@@ -36,17 +40,19 @@
     /* Remove background color */
     border: none;
     /* Remove borders */
-    color: #fff;
+    color: #333
     /* Text color for buttons */
 }
 
-.nav-link:hover {
-    color: #ccc;
-    /* Text color when hovering over buttons */
+.navbar-items {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+
 }
 
-/* Log Out button */
-.nav-link:last-child {
-    color: #f00;
-    /* Text color for Log Out button */
+.navbar-brand {
+    margin: 15px;
+    font-size: 2rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }

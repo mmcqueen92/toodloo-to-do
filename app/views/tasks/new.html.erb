@@ -1,4 +1,4 @@
-<%= button_to 'Back', user_tasks_path(current_user), class: 'btn btn-info', method: :get %>
+<%= button_to 'Back', user_tasks_path(current_user), class: 'btn btn-back', method: :get %>
 <h1 class="page-title">New Task</h1>
 
 <%= form_with(model: @task, url: create_user_task_path, method: :post, html: { class: 'task-form' }) do |form| %>

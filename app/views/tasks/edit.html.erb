@@ -1,24 +1,23 @@
-<h1>Edit Task</h1>
+<%= button_to 'Back', user_tasks_path(current_user), class: 'btn btn-back', method: :get %>
+<h1 class="page-title">Edit Task</h1>
 
-<%= form_with(model: @task, url: update_user_task_path, method: :patch) do |form| %>
-  <div class="field">
+<%= form_with(model: @task, url: update_user_task_path, method: :patch, html: { class: 'task-form' }) do |form| %>
+  <div class="form-group">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, class: 'form-control', rows: 8 %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :due_date %>
-    <%= form.date_field :due_date %>
+    <%= form.date_field :due_date, class: 'form-control' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit 'Update Task' %>
+  <div class="form-group">
+    <%= form.submit 'Update Task', class: 'btn btn-submit' %>
   </div>
 <% end %>
-
-<%= link_to 'Back', user_tasks_path(current_user) %>

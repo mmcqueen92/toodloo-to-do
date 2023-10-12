@@ -21,7 +21,7 @@
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin: 20px;
 }
 
 .form-control {
@@ -31,6 +31,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #fff;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .form-control::placeholder {

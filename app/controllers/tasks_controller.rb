@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   # gets all of user's tasks
   def index
-    @tasks = current_user.tasks.all
+    @tasks = current_user.tasks.order(due_date: :asc)
   end
 
   # show users tasks for the day
